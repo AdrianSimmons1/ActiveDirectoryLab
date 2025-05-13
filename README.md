@@ -6,7 +6,7 @@
   <div class="section">
     <h2>Overview</h2>
     <p>This lab demonstrates how to set up a small enterprise network using two virtual machines: a Windows Server 2019 instance configured as a Domain Controller with DHCP, and a Windows 10 client joined to the domain. Key objectives include domain promotion, DHCP scope creation, user account management through Active Directory, and bulk user creation via PowerShell scripting.</p>
-    <img src="https://i.imgur.com/4fc6caa2-816b-44cc-8534-e7fb84cc2a5b.png" alt="Network Topology Diagram">
+    <img src="https://i.imgur.com/L587ceJ.jpeg" alt="Network Topology Diagram">
   </div>
 
   <div class="section">
@@ -16,7 +16,8 @@
       <li>Deployed <b>Windows 10 Pro</b> on the second VM to serve as the domain-joined client.</li>
       <li>Configured both VMs on an <b>internal virtual network</b> to facilitate isolated testing.</li>
     </ul>
-    <img src="path_to_vm_setup_screenshot.png" alt="VM Setup Screenshot">
+    <img src="https://i.imgur.com/u1imcpv.png" alt="VM Setup Screenshot">
+    <img src="https://i.imgur.com/OJXbzzR.png" alt="VM Setup Screenshot">
   </div>
 
   <div class="section">
@@ -25,12 +26,12 @@
       <li>On the Server VM, launched <b>Server Manager</b> &rarr; <b>Add Roles and Features</b>.</li>
       <li>Installed the <b>Active Directory Domain Services (AD DS)</b> role.</li>
     </ul>
-    <img src="path_to_post_deployment_screenshot.png" alt="installed active directory">
+    <img src="https://i.imgur.com/Mru0Q6u.png" alt="installed active directory">
     <ul>
       <li>Ran the <b>Post-Deployment Configuration Wizard</b> to promote the server to a domain controller in a new forest named <code>mydomain.com</code>.</li>
     </ul>
     <p>During post-deployment, I selected “Add a new forest,” entered <code>mydomain.com</code> as the root domain name, configured DNS options, set the Directory Services Restore Mode (DSRM) password, and completed the wizard. The server automatically restarted to finalize the promotion.</p>
-    <img src="path_to_post_deployment_screenshot.png" alt="Post-Deployment Configuration Screenshot">
+    <img src="https://i.imgur.com/vP7rPlU.png" alt="Post-Deployment Configuration Screenshot">
   </div>
 
   <div class="section">
@@ -41,7 +42,7 @@
       <li>Manually created a user account (<code>a-asimmons</code>) within <code>_ADMINS</code>.</li>
       <li>Added <code>a-asimmons</code> to the <b>Domain Admins</b> group.</li>
     </ul>
-    <img src="path_to_admin_user_creation_screenshot.png" alt="Admin Account Creation Screenshot">
+    <img src="https://i.imgur.com/iki2vDO.png" alt="Admin Account Creation Screenshot">
   </div>
 
   <div class="section">
@@ -50,12 +51,12 @@
       <li>On the Domain Controller VM, opened <b>Server Manager</b> &rarr; <b>Add Roles and Features</b>.</li>
       <li>Installed the <b>Remote Access</b> role and the <b>DirectAccess and VPN (RAS)</b> features.</li>
     </ul>
-    <img src="path_to_ras_nat_configuration_screenshot.png" alt="Ras Nat Installation Screenshot">
+    <img src="https://i.imgur.com/mJ5E9Js.png" alt="Ras Nat Installation Screenshot">
     <ul>
       <li>Launched the <b>Routing and Remote Access</b> console to enable RAS and configure NAT services.</li>
       <li>Configured the internal network interface for NAT, enabling client VMs to access external network resources through the server.</li>
     </ul>
-    <img src="path_to_ras_nat_configuration_screenshot.png" alt="RAS NAT Configuration Screenshot">
+    <img src="https://i.imgur.com/OGHKm3t.png" alt="RAS NAT Configuration Screenshot">
   </div>
 
   <div class="section">
@@ -63,19 +64,19 @@
     <ul>
       <li>Installed the <b>DHCP Server</b> role via Server Manager on the DC.</li>
     </ul>
-    <img src="path_to_dhcp_configuration_screenshot.png" alt="DHCP Server Install Screenshot">
+    <img src="https://i.imgur.com/ENUaC0U.png" alt="DHCP Server Install Screenshot">
     <ul>
       <li>Created a DHCP scope (range: <code>192.168.0.100</code> to <code>192.168.0.200</code>).</li>
     </ul>
-    <img src="path_to_dhcp_configuration_screenshot.png" alt="DHCP Server Scope Config Screenshot">
+    <img src="https://i.imgur.com/PZMkDLB.png" alt="DHCP Server Scope Config Screenshot">
     <ul>
       <li>Configured scope options: default gateway, DNS servers, and lease duration.</li>
     </ul>
-    <img src="path_to_dhcp_configuration_screenshot.png" alt="DHCP Scope Configuration Screenshot">
+    <img src="https://i.imgur.com/Zgdtp3q.png" alt="DHCP Scope Configuration Screenshot">
     <ul>
       <li>Activated the scope and authorized the DHCP server in AD.</li>
     </ul>
-    <img src="path_to_dhcp_configuration_screenshot.png" alt="DHCP Scope Configuration Screenshot">
+    <img src="https://i.imgur.com/Y9uxHaa.png" alt="DHCP Scope Configuration Screenshot">
   </div>
 
   <div class="section">
@@ -102,7 +103,9 @@ foreach ($n in $USER_FIRST_LAST_LIST) {
                -Enabled         $true
 }
 </code></pre>
-    <img src="path_to_powershell_script_execution_screenshot.png" alt="PowerShell Script Execution Screenshot">
+    <img src="https://i.imgur.com/wNtsHTN.png" alt="PowerShell Script Execution Screenshot">
+    <img src="https://i.imgur.com/vMRosSZ.png" alt="PowerShell Script Execution Screenshot">
+    <img src="https://i.imgur.com/j2DAFRo.png" alt="PowerShell Script Execution Screenshot">
   </div>
 
   <div class="section">
@@ -110,21 +113,21 @@ foreach ($n in $USER_FIRST_LAST_LIST) {
     <ul>
       <li>Verified Windows 10 client received a DHCP lease.</li>
     </ul>
-    <img src="path_to_client_domain_join_screenshot.png" alt="Client Domain Join Screenshot">
+    <img src="https://i.imgur.com/jeDeLoQ.png" alt="Client Domain Join Screenshot">
     <ul>
       <li>Renamed the client to <code>Client01</code> for clarity in AD.</li>
       <li>Joined the client to the <code>mydomain.com</code> domain using <code>a-asimmons</code> credentials.</li>
     </ul>
-    <img src="path_to_client_domain_join_screenshot.png" alt="Client Domain Join Screenshot">
+    <img src="https://i.imgur.com/UmZphdZ.png" alt="Client Domain Join Screenshot">
     <ul>
       <li>Restarted the client and logged in with domain account.</li>
-      <li>Opened <b>Active Directory Users and Computers</b> on the DC to confirm <code>Client01</code> appears under the Computers container.</li>
+      <li>Opened <b>Active Directory Users and Computers</b> on the DC to confirm <code>Client1</code> appears under the Computers container.</li>
     </ul>
-    <img src="path_to_client_domain_join_screenshot.png" alt="Client Domain Join Screenshot">
+    <img src="https://i.imgur.com/weRg54s.png" alt="Client Domain Join Screenshot">
     <ul>
-      <li>Checked the <b>DHCP</b> console to verify an active lease for <code>Client01</code> within the configured scope.</li>
+      <li>Checked the <b>DHCP</b> console to verify an active lease for <code>Client1</code> within the configured scope.</li>
     </ul>
-    <img src="path_to_client_domain_join_screenshot.png" alt="Client Domain Join Screenshot">
+    <img src="https://i.imgur.com/h1yWY96.png" alt="Client Domain Join Screenshot">
   </div>
 
   <div class="section">
